@@ -19,8 +19,8 @@ fn main() {
     sourceview::View::static_type();
     let text_output: gtk::TextView = builder.get_object("sourceview").unwrap();
 
-    let name_buf: gtk::TextBuffer = gtk::TextBuffer::new(None::<&gtk::TextTagTable>);
-    text_output.set_buffer(Some(&name_buf));
+    let cat_buf: gtk::TextBuffer = gtk::TextBuffer::new(None::<&gtk::TextTagTable>);
+    text_output.set_buffer(Some(&cat_buf));
 
     // window destructor (closes program properly)
     window.connect_destroy( |_| { 
