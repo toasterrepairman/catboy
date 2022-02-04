@@ -12,7 +12,9 @@
         <property name="left-margin">2</property>
         <property name="right-margin">2</property>
         <property name="show-line-numbers">True</property>
+        <property name="tab-width">4</property>
         <property name="auto-indent">True</property>
+        <property name="show-right-margin">True</property>
       </object>
     </child>
     <child type="titlebar">
