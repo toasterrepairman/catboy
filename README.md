@@ -14,4 +14,4 @@ Pull Requests: | Scrutinized Heavily
 Style Guidelines: | N/A
 That's a cute cat! | thanks
 
-<img src="assets/badge.png" width="200" />
+<img src="assets/badge.png" width="200"/>
