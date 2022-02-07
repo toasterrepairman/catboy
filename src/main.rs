@@ -1,20 +1,10 @@
 use gtk::{TextBuffer, prelude::*};
 use glib::{clone, MainContext};
 use sourceview::*;
-use clap::Parser;
-
-/// Concatenates input to a GTK
-#[derive(Parser, Debug)]
-#[clap(author, version, about, long_about = None)]
-struct Args {
-    /// Input path of file to print
-    #[clap(short, long, default_value = "")]
-    filepath: String,
-
-    /// Accept data from stdin to print
-    #[clap(short, long, default_value = "")]
-    raw: String,
-}
+use std::env;
+use std::path::Path;
+use std::io::prelude::*;
+use std::fs::*;
 
 fn main() {
     if gtk::init().is_err() {
@@ -45,18 +35,37 @@ fn main() {
     let cat_buf: gtk::TextBuffer = gtk::TextBuffer::new(None::<&gtk::TextTagTable>);
     text_output.set_buffer(Some(&cat_buf));
 
-    // init command line arguements
-    let args = Args::parse();
+    // initialize arg vector
+    let args: Vec<String> = env::args().collect();
+
+    // parse args
+    match args.len() {
+        1 => {
+            println!("No args found, launching GUI.")
+        }
+
+        2 => {
+            if Path::new(&args[1]).exists() {
+                println!("found stuff!");
+                let mut contents = String::new() ;
+                File::open(&args[1])
+                    .expect("Unable to open file. Do you have proper permissions?")
+                    .read_to_string(&mut contents).expect("Unable to read the file");
+                println!("{}", contents);
+            }
+        }
+
+        _ => println!("Input not parsable. If you're directly passing a string, try using quotes.")
+    }
 
     // grab (optional) input from CLI
     // TODO
 
-    /*
     // file opening handler (NON_FUNCTIONAL AS OF NOW)
     open.connect_clicked(move |_| {
         &filepicker.show();
     });
-    */
+
 
     // window destructor (closes program properly)
     window.connect_destroy( |_| { 
