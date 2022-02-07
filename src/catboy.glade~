@@ -140,7 +140,6 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <property name="margin-start">2</property>
-                <property name="margin-end">2</property>
                 <property name="margin-top">2</property>
                 <property name="margin-bottom">2</property>
                 <property name="vexpand">True</property>
@@ -158,7 +157,6 @@
                 <property name="receives-default">True</property>
                 <property name="margin-left">2</property>
                 <property name="margin-right">2</property>
-                <property name="margin-start">2</property>
                 <property name="margin-end">2</property>
                 <property name="margin-top">2</property>
                 <property name="margin-bottom">2</property>
