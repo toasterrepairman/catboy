@@ -5,6 +5,7 @@ use std::env;
 use std::path::Path;
 use std::io::prelude::*;
 use std::fs::*;
+use clipboard::*;
 
 fn main() {
     if gtk::init().is_err() {
@@ -61,11 +62,29 @@ fn main() {
     // grab (optional) input from CLI
     // TODO
 
+    /*
     // file opening handler (NON_FUNCTIONAL AS OF NOW)
     open.connect_clicked(move |_| {
         &filepicker.show();
     });
+    */
 
+    // copy handler
+    copy.connect_clicked(move |_| {
+        // sets up keyboard context
+        let mut ctx: ClipboardContext = ClipboardProvider::new()
+            .expect("Failed to access clipboard");
+        // pushes to clipboard by invoking textbuffer magicks
+        // if anyone uses code like this in production, I refuse to let you blame me
+        // seriously, converting a gstring to a String should not be this hard
+        // why this garbage was not fixed prior to expanding GTK with libadwaita & friends is beyond me
+        ctx.set_contents(cat_buf
+                .get_text(&cat_buf.get_start_iter(), &cat_buf.get_end_iter(), true)
+                .unwrap()
+                .as_str()
+                .to_string())
+            .expect("Failed to write to clipboard.");
+    });
 
     // window destructor (closes program properly)
     window.connect_destroy( |_| { 
