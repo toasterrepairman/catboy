@@ -87,25 +87,6 @@
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
         <child>
-          <object class="GtkSourceView" id="sourceview">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="left-margin">2</property>
-            <property name="right-margin">2</property>
-            <property name="monospace">True</property>
-            <property name="show-line-numbers">True</property>
-            <property name="tab-width">4</property>
-            <property name="auto-indent">True</property>
-            <property name="show-right-margin">True</property>
-          </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">0</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkStatusbar" id="statusbar">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
@@ -119,6 +100,35 @@
           <packing>
             <property name="left-attach">0</property>
             <property name="top-attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="shadow-type">in</property>
+            <child>
+              <object class="GtkSourceView" id="sourceview">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="left-margin">2</property>
+                <property name="right-margin">2</property>
+                <property name="monospace">True</property>
+                <property name="show-line-numbers">True</property>
+                <property name="tab-width">4</property>
+                <property name="auto-indent">True</property>
+                <property name="show-right-margin">True</property>
+                <property name="highlight-current-line">True</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
       </object>

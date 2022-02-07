@@ -51,7 +51,7 @@ fn main() {
                 File::open(&args[1])
                     .expect("Unable to open file. Do you have proper permissions?")
                     .read_to_string(&mut contents).expect("Unable to read the file");
-                println!("{}", contents);
+                cat_buf.set_text(&contents);
             }
         }
 
