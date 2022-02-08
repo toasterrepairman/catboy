@@ -69,7 +69,7 @@ fn main() {
     });
     */
 
-    // copy handler
+    // clipboard copy handler
     copy.connect_clicked(move |_| {
         // sets up keyboard context
         let mut ctx: ClipboardContext = ClipboardProvider::new()
@@ -83,7 +83,7 @@ fn main() {
                 .unwrap()
                 .as_str()
                 .to_string())
-            .expect("Failed to write to clipboard.");
+            .expect("Failed to write to clipboard");
     });
 
     // window destructor (closes program properly)
