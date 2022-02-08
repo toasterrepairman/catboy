@@ -1,4 +1,4 @@
-use gtk::{TextBuffer, prelude::*};
+use gtk::{TextBuffer, prelude::*, ResponseType};
 use glib::{clone, MainContext};
 use sourceview::*;
 use std::env;
@@ -6,6 +6,7 @@ use std::path::Path;
 use std::io::prelude::*;
 use std::fs::*;
 use clipboard::*;
+use rfd::FileDialog;
 
 fn main() {
     if gtk::init().is_err() {
@@ -33,11 +34,20 @@ fn main() {
     let picker_open: gtk::Button = builder.get_object("picker_open").unwrap();
 
     // set up Sourceview buffer
-    let cat_buf: gtk::TextBuffer = gtk::TextBuffer::new(None::<&gtk::TextTagTable>);
+    let cat_buf: TextBuffer = TextBuffer::new(None::<&gtk::TextTagTable>);
     text_output.set_buffer(Some(&cat_buf));
 
     // initialize arg vector
     let args: Vec<String> = env::args().collect();
+
+    // printing function
+    fn gui_print(path: &str, buffer: &TextBuffer) {
+        let mut contents = String::new() ;
+            File::open(path)
+                .expect("Unable to open file. Do you have proper permissions?")
+                .read_to_string(&mut contents).expect("Unable to read the file");
+        buffer.set_text(&contents)
+    }
 
     // parse args
     match args.len() {
@@ -48,11 +58,7 @@ fn main() {
         2 => {
             if Path::new(&args[1]).exists() {
                 println!("found stuff!");
-                let mut contents = String::new() ;
-                File::open(&args[1])
-                    .expect("Unable to open file. Do you have proper permissions?")
-                    .read_to_string(&mut contents).expect("Unable to read the file");
-                cat_buf.set_text(&contents);
+                gui_print(&args[1], &cat_buf);
             }
         }
 
@@ -62,13 +68,12 @@ fn main() {
     // grab (optional) input from CLI
     // TODO
 
-    /*
     // file opening handler (NON_FUNCTIONAL AS OF NOW)
     open.connect_clicked(move |_| {
-        &filepicker.show();
+        gui_print("~/.bashrc", &cat_buf);
     });
-    */
 
+    /*
     // clipboard copy handler
     copy.connect_clicked(move |_| {
         // sets up keyboard context
@@ -85,6 +90,7 @@ fn main() {
                 .to_string())
             .expect("Failed to write to clipboard");
     });
+    */
 
     // window destructor (closes program properly)
     window.connect_destroy( |_| { 
