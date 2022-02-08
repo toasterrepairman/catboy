@@ -24,7 +24,6 @@ fn main() {
     // init widgets (and mysterious sourceview incantation)
     sourceview::View::static_type();
     let text_output: gtk::TextView = builder.get_object("sourceview").unwrap();
-    let filepicker: gtk::FileChooserDialog = builder.get_object("filepicker").unwrap();
     let statusbar: gtk::Statusbar = builder.get_object("statusbar").unwrap();
     let open: gtk::Button = builder.get_object("open").unwrap();
     let copy: gtk::Button = builder.get_object("copy").unwrap();
@@ -39,9 +38,10 @@ fn main() {
     // printing function
     fn gui_print(path: &str, buffer: &TextBuffer) {
         let mut contents = String::new() ;
-            File::open(path)
+            File::open(Path::new(path))
                 .expect("Unable to open file. Do you have proper permissions?")
-                .read_to_string(&mut contents).expect("Unable to read the file");
+                .read_to_string(&mut contents)
+                    .expect("Unable to read the file");
         buffer.set_text(&contents)
     }
 
