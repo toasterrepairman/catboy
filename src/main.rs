@@ -29,10 +29,6 @@ fn main() {
     let open: gtk::Button = builder.get_object("open").unwrap();
     let copy: gtk::Button = builder.get_object("copy").unwrap();
 
-    // filepicker widgets
-    let picker_cancel: gtk::Button = builder.get_object("picker_cancel").unwrap();
-    let picker_open: gtk::Button = builder.get_object("picker_open").unwrap();
-
     // set up Sourceview buffer
     let cat_buf: TextBuffer = TextBuffer::new(None::<&gtk::TextTagTable>);
     text_output.set_buffer(Some(&cat_buf));
