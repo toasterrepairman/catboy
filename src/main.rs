@@ -61,15 +61,7 @@ fn main() {
         _ => println!("Input not parsable. If you're directly passing a string, try using quotes.")
     }
 
-    // grab (optional) input from CLI
-    // TODO
-
-    // file opening handler (NON_FUNCTIONAL AS OF NOW)
-    open.connect_clicked(move |_| {
-        gui_print("~/.bashrc", &cat_buf);
-    });
-
-    /*
+    let text_contents = cat_buf.clone();
     // clipboard copy handler
     copy.connect_clicked(move |_| {
         // sets up keyboard context
@@ -79,14 +71,21 @@ fn main() {
         // if anyone uses code like this in production, I refuse to let you blame me
         // seriously, converting a gstring to a String should not be this hard
         // why this garbage was not fixed prior to expanding GTK with libadwaita & friends is beyond me
-        ctx.set_contents(cat_buf
-                .get_text(&cat_buf.get_start_iter(), &cat_buf.get_end_iter(), true)
+        ctx.set_contents(text_contents
+                .get_text(&text_contents.get_start_iter(), &text_contents.get_end_iter(), true)
                 .unwrap()
                 .as_str()
                 .to_string())
             .expect("Failed to write to clipboard");
     });
-    */
+
+    // grab (optional) input from CLI
+    // file opening handler (NON_FUNCTIONAL AS OF NOW)
+    open.connect_clicked(move |_| {
+        gui_print("~/.bashrc", &cat_buf);
+    });
+
+
 
     // window destructor (closes program properly)
     window.connect_destroy( |_| { 
