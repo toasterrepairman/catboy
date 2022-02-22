@@ -14,4 +14,8 @@ Pull Requests: | Scrutinized Heavily
 Style Guidelines: | N/A
 That's a cute cat! | thanks
 
+## known issues:
+- crashes on ctrl+backspace (gtk's fault)
+- panics when aborting filepicker (I'll call it a feature)
+
 <img src="assets/badge.png" width="200"/>
