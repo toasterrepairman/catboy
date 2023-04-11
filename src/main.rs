@@ -1,6 +1,5 @@
 use gtk::{TextBuffer, prelude::*, ResponseType};
 use glib::{clone, MainContext};
-use sourceview::*;
 use std::env;
 use std::path::Path;
 use std::io::prelude::*;
@@ -22,7 +21,6 @@ fn main() {
     let window: gtk::Window = builder.get_object("mainwindow").unwrap();
 
     // init widgets (and mysterious sourceview incantation)
-    sourceview::View::static_type();
     let text_output: gtk::TextView = builder.get_object("sourceview").unwrap();
     let statusbar: gtk::Statusbar = builder.get_object("statusbar").unwrap();
     let open: gtk::Button = builder.get_object("open").unwrap();

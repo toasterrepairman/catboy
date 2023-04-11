@@ -241,9 +241,7 @@ dependencies = [
  "gio",
  "glib 0.14.8",
  "gtk",
- "gtk-source-sys",
  "rfd",
- "sourceview",
 ]
 
 [[package]]
@@ -796,24 +794,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "gtk-source-sys"
-version = "0.10.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "010ad29f87606c4bc91fe4ab6762cab3d5155af7100e59c1af9c6d9aba5df689"
-dependencies = [
- "bitflags",
- "cairo-sys-rs 0.10.0",
- "gdk-pixbuf-sys 0.10.0",
- "gdk-sys 0.10.0",
- "gio-sys 0.10.1",
- "glib-sys 0.10.1",
- "gobject-sys 0.10.0",
- "gtk-sys 0.10.0",
- "libc",
- "pkg-config",
-]
-
-[[package]]
 name = "gtk-sys"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1316,30 +1296,6 @@ checksum = "66d72b759436ae32898a2af0a14218dbf55efde3feeb170eb623637db85ee1e0"
 dependencies = [
  "libc",
  "winapi",
-]
-
-[[package]]
-name = "sourceview"
-version = "0.9.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6197ca40c697b552b8d27cfa9d8ee15267037ac071f4c1010749625ba2fc8f79"
-dependencies = [
- "bitflags",
- "cairo-rs",
- "gdk",
- "gdk-pixbuf",
- "gdk-pixbuf-sys 0.10.0",
- "gdk-sys 0.10.0",
- "gio",
- "gio-sys 0.10.1",
- "glib 0.10.3",
- "glib-sys 0.10.1",
- "gobject-sys 0.10.0",
- "gtk",
- "gtk-source-sys",
- "gtk-sys 0.10.0",
- "libc",
- "pango",
 ]
 
 [[package]]
